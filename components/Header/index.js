@@ -1,20 +1,33 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+
 import { Routes } from "../../common/constants";
 
 const Header = ({ navigation }) => {
+  console.log("navigation", navigation);
+  if (!navigation) return <></>;
   const routes = navigation.getState().routes;
   const len = routes.length;
   const name = routes[len - 1]["name"];
-  // console.log("navigation", routes.map(i => i.name));
   // console.log("navigation", routes[len - 1]["name"]);
   return (
     <View style={styles.container}>
       {Routes.map((route, idx) => (
-        <Button
+        // <Button
+        //   key={idx}
+        //   
+        //   title={`${route.title}`}
+        //   onPress={() => navigation.navigate(route.name)}
+        // >
+
+        // </Button>
+        <Icon
+          name={route.icon}
+          color={name !== route.name ? "#bab9c0" : "#1c1a33"}
+          style={{ margin: 0, padding: 10 }}
           key={idx}
-          color={name !== route.name ? "gray" : "blue" }
-          title={`${route.title}`}
+          size={25}
           onPress={() => navigation.navigate(route.name)}
         />
       ))}
@@ -28,11 +41,10 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     flexDirection: "row",
 
     // backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
+    alignItems: "center",
   },
 });

@@ -4,8 +4,10 @@ import {
 } from "react-native-safe-area-context";
 import React from "react";
 import { View } from "react-native";
+import Header from "../Header";
+import MainView from "../MainView";
 
-const SafeView = ({ children }) => {
+const SafeView = ({ navigation, children, keyboardDissmissabled = false }) => {
   const insets = useSafeAreaInsets();
   return (
     <View
@@ -15,13 +17,17 @@ const SafeView = ({ children }) => {
         // alignItems: "center",
 
         // Paddings to handle safe area
+        flexDirection: "column-reverse",
         paddingTop: insets.top,
-        paddingBottom: insets.bottom,
+        // paddingBottom: insets.bottom,
         paddingLeft: insets.left,
         paddingRight: insets.right,
       }}
     >
-      {children}
+      {/* <Header navigation={navigation}></Header> */}
+      <MainView keyboardDissmissabled={keyboardDissmissabled}>
+        {children}
+      </MainView>
     </View>
   );
 };

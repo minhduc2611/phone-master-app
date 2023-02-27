@@ -5,10 +5,9 @@ import Header from "../../components/Header";
 import SafeView from "../../components/SafeView";
 const Home = ({ navigation }) => {
   return (
-    <SafeView>
-      <Header navigation={navigation} />
+    <SafeView navigation={navigation}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Home Screen</Text>
+        {/* <Text style={styles.title}>Home Screen</Text> */}
       </View>
     </SafeView>
   );

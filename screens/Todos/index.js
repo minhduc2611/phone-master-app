@@ -1,20 +1,9 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  SafeAreaView,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
 import moment from "moment";
-import Header from "../../components/Header";
+import React, { useState } from "react";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import SafeView from "../../components/SafeView";
-import DismissKeyboardView from "../../hoc/DismissKeyboardView";
 
 const Todos = ({ navigation }) => {
   const [title, setTitle] = useState("");
@@ -22,7 +11,6 @@ const Todos = ({ navigation }) => {
   const [dueDate, setDueDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [todoType, setTodoType] = useState("Personal");
-
   const handleSave = () => {
     // Save the todo item
   };
@@ -34,27 +22,21 @@ const Todos = ({ navigation }) => {
   };
 
   return (
-    <SafeView>
-      <DismissKeyboardView>
-      <Header navigation={navigation}></Header>
-      
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Todos Screen</Text>
-      </View>
+    <SafeView navigation={navigation} keyboardDissmissabled>
       <View style={styles.container}>
         <Text style={styles.label}>Title</Text>
         <TextInput style={styles.input} value={title} onChangeText={setTitle} />
         <Text style={styles.label}>Description</Text>
-        
-          <TextInput
-            style={styles.input}
-            value={description}
-            onChangeText={setDescription}
-            styles={{ flex: 1, padding: 10, paddingTop: 12, paddingBottom: 12 }}
-            maxHeight={240}
-            onBlur={() => console.log("ON BLUR")}
-            onFocus={() => console.log("ON FOCUS")}
-          />
+
+        <TextInput
+          style={styles.input}
+          value={description}
+          onChangeText={setDescription}
+          styles={{ flex: 1, padding: 10, paddingTop: 12, paddingBottom: 12 }}
+          maxHeight={240}
+          onBlur={() => console.log("ON BLUR")}
+          onFocus={() => console.log("ON FOCUS")}
+        />
 
         <Text style={styles.label}>Due date</Text>
         <Button
@@ -81,7 +63,6 @@ const Todos = ({ navigation }) => {
         </Picker>
         <Button title="Save" onPress={handleSave} />
       </View>
-      </DismissKeyboardView>
     </SafeView>
   );
 };

@@ -11,7 +11,6 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import Header from "../../components/Header";
 import SafeView from "../../components/SafeView";
 import AddExpense from "./AddExpense";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -25,8 +24,7 @@ const Expenses = ({ navigation }) => {
 
   const scrollViewRef = useRef(null);
   const modalRef = useRef(null);
-  const [showBlueView, setShowBlueView] = useState(false);
-  const [animatedWidthValue, setAnimatedWidthValue] = useState(
+  const [animatedWidthValue] = useState(
     new Animated.Value(1)
   );
 
@@ -36,7 +34,7 @@ const Expenses = ({ navigation }) => {
     // x positon la ? %
     const scrollPosition = event.nativeEvent.contentOffset.y;
     const percent = (-1 * scrollPosition * 100) / (-1 * ScrollThrestHold);
-    console.log("scrollPosition", -1 * scrollPosition, "===>", percent, "%");
+    // console.log("scrollPosition", -1 * scrollPosition, "===>", percent, "%");
 
     if (scrollPosition < 0 && percent < 100) {
       // 0.5 la 100%
@@ -62,18 +60,7 @@ const Expenses = ({ navigation }) => {
   };
 
   return (
-    <SafeView>
-      <Header navigation={navigation}></Header>
-      {/* <ScrollView style={styles.scrollView}>
-        <View style={styles.container}>
-          <Text style={styles.text}>Expenses Screen</Text>
-        </View>
-        
-      </ScrollView> */}
-      {/* <SafeAreaView style={styles.container}> */}
-      {/* <View style={styles.titleContainer}>
-        <Text style={styles.title}>Expenses Screen</Text>
-      </View> */}
+    <SafeView navigation={navigation}>
       <View
         style={{
           margin: 15,
@@ -85,7 +72,7 @@ const Expenses = ({ navigation }) => {
           zIndex: 100,
           position: "absolute",
           right: insets.right,
-          top: insets.top + 40,
+          top: insets.top + 10,
 
           alignItems: "center",
         }}
@@ -104,28 +91,23 @@ const Expenses = ({ navigation }) => {
         id="expense-total"
         style={{
           height: 150,
-          alignItems: 'center',
-          alignContent: 'center',
-          paddingTop: 70
+          alignItems: "center",
+          alignContent: "center",
+          paddingTop: 70,
         }}
       >
-        <Text style={{fontSize: 30}} >4.500.000 VND</Text>
+        <Text style={{ fontSize: 30 }}>4.500.000 VND</Text>
       </View>
+
       <ScrollView
         ref={scrollViewRef}
         style={styles.scrollView}
         // stickyHeaderIndices={[0]}
-        // horizontal={true}
         onScroll={handleScroll}
         scrollEventThrottle={16}
         onMomentumScrollBegin={(e) => {
           if (e.nativeEvent.contentOffset.y < ScrollThrestHold) {
-            console.log(
-              "onMomentumScrollBegin OPEN THE MODALLLLL",
-              e.nativeEvent.contentOffset
-            );
-            console.log("scrollViewRef", scrollViewRef.current.contentOffset);
-            console.log("modalRef", modalRef.current.setModalVisible(true));
+            modalRef.current.setModalVisible(true);
           }
         }}
       >
@@ -161,8 +143,6 @@ const Expenses = ({ navigation }) => {
         </View>
         <AddExpense ref={modalRef} />
       </ScrollView>
-
-      {/* </SafeAreaView> */}
     </SafeView>
   );
 };

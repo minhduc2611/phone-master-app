@@ -7,6 +7,7 @@ import {
   Modal,
   Alert,
   Pressable,
+  Button,
 } from "react-native";
 import GestureRecognizer from "react-native-swipe-gestures";
 import SafeView from "../../../components/SafeView";
@@ -18,68 +19,67 @@ function AddExpenseComponent(props, ref) {
   }));
   return (
     <View ref={ref}>
-      {/* <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable> */}
       <GestureRecognizer
         style={{ flex: 1 }}
         onSwipeDown={() => setModalVisible(false)}
       >
         <Modal
           animationType="slide"
-          transparent={true}
+          // transparent={true}
           visible={modalVisible}
+          presentationStyle={"pageSheet"}
           onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
+            // Alert.alert("Modal has been closed.");
             setModalVisible(!modalVisible);
           }}
         >
-          <SafeView style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>Cơm tấm: 500.000 VND</Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyle}>Add</Text>
-              </Pressable>
+          <View style={styles.modalView}>
+            <View style={{flexDirection: 'row'}}>
+              <Button
+                title="cancel"
+                style={styles.closeButton}
+                onPress={() => {
+                  setModalVisible(false);
+                }}
+              ></Button>
             </View>
-          </SafeView>
+
+            <Text style={styles.modalText}>Cơm tấm: 500.000 VND</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Add</Text>
+            </Pressable>
+          </View>
+          {/* <SafeView style={styles.centeredView}>
+          </SafeView> */}
         </Modal>
       </GestureRecognizer>
     </View>
   );
 }
 
-export default  AddExpense = React.forwardRef(AddExpenseComponent);
+export default AddExpense = React.forwardRef(AddExpenseComponent);
 
 const styles = StyleSheet.create({
+  closeButton:{
+    flexDirection: ''
+  },
   centeredView: {
-    flex: 1,
+    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    // marginTop: 22,
   },
   modalView: {
     //   margin: 20,
     backgroundColor: "white",
     //   borderRadius: 20,
     color: "white",
-    padding: 35,
-    width: "100%",
-    height: "100%",
-    //   alignItems: "center",
-    //   shadowColor: "#000",
-    //   shadowOffset: {
-    //     width: 0,
-    //     height: 2,
-    //   },
-    //   shadowOpacity: 0.25,
-    //   shadowRadius: 4,
-    //   elevation: 5,
+    // padding: 35,
+    // width: "100%",
+    // height: "100%",
   },
   button: {
     borderRadius: 20,

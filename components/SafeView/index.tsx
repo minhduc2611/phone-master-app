@@ -7,7 +7,7 @@ import { View } from "react-native";
 import Header from "../Header";
 import MainView from "../MainView";
 
-const SafeView = ({ navigation, children, keyboardDissmissabled = false }) => {
+const SafeView = ({ children, keyboardDissmissabled = false }: any) => {
   const insets = useSafeAreaInsets();
   return (
     <View
@@ -24,7 +24,6 @@ const SafeView = ({ navigation, children, keyboardDissmissabled = false }) => {
         paddingRight: insets.right,
       }}
     >
-      {/* <Header navigation={navigation}></Header> */}
       <MainView keyboardDissmissabled={keyboardDissmissabled}>
         {children}
       </MainView>

@@ -1,34 +1,26 @@
 import React, { useRef, useState } from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  StatusBar,
-  ScrollView,
-  Animated,
+  Animated, ScrollView, StyleSheet, Text, View
 } from "react-native";
 import {
-  SafeAreaView,
-  useSafeAreaInsets,
+  useSafeAreaInsets
 } from "react-native-safe-area-context";
 import SafeView from "../../components/SafeView";
 import AddExpense from "./AddExpense";
-import Icon from "react-native-vector-icons/Ionicons";
-import { Image, Svg } from "react-native-svg";
 import AddIcon from "./AddIcon";
 
 const ScrollThrestHold = -50;
 
-const Expenses = ({ navigation }) => {
+const Expenses = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
 
-  const scrollViewRef = useRef(null);
-  const modalRef = useRef(null);
+  const scrollViewRef = useRef<any>(null);
+  const modalRef = useRef<any>(null);
   const [animatedWidthValue] = useState(
     new Animated.Value(1)
   );
 
-  const handleScroll = (event) => {
+  const handleScroll = (event: any) => {
     // ScrollThrestHold la 100%
     // scrollPosition = 25 la 250%
     // x positon la ? %
@@ -64,16 +56,11 @@ const Expenses = ({ navigation }) => {
       <View
         style={{
           margin: 15,
-          //   backgroundColor: "yellow",
-          //   flex: 1,
-          justifyContent: "end",
           height: 30,
-          //   width: 30,
           zIndex: 100,
           position: "absolute",
           right: insets.right,
           top: insets.top + 10,
-
           alignItems: "center",
         }}
       >
@@ -107,7 +94,7 @@ const Expenses = ({ navigation }) => {
         scrollEventThrottle={16}
         onMomentumScrollBegin={(e) => {
           if (e.nativeEvent.contentOffset.y < ScrollThrestHold) {
-            modalRef.current.setModalVisible(true);
+            modalRef.current?.setModalVisible(true);
           }
         }}
       >
@@ -157,7 +144,7 @@ const styles = StyleSheet.create({
   },
   container: {},
   scrollView: {
-    backgroundColor: "pink",
+    flex: 1,
   },
   icon: {
     // position: "fixed",
@@ -174,9 +161,7 @@ const styles = StyleSheet.create({
   },
   //   scrollView: {},
 
-  scrollView: {
-    flex: 1,
-  },
+
   green: {
     height: 100,
     width: "100%",

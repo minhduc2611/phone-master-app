@@ -12,7 +12,7 @@ import {
 import GestureRecognizer from "react-native-swipe-gestures";
 import SafeView from "../../../components/SafeView";
 
-function AddExpenseComponent(props, ref) {
+function AddExpenseComponent(props: any, ref: any) {
   const [modalVisible, setModalVisible] = useState(false);
   useImperativeHandle(ref, () => ({
     setModalVisible: setModalVisible,
@@ -34,10 +34,9 @@ function AddExpenseComponent(props, ref) {
           }}
         >
           <View style={styles.modalView}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: "row" }}>
               <Button
                 title="cancel"
-                style={styles.closeButton}
                 onPress={() => {
                   setModalVisible(false);
                 }}
@@ -59,13 +58,10 @@ function AddExpenseComponent(props, ref) {
     </View>
   );
 }
-
-export default AddExpense = React.forwardRef(AddExpenseComponent);
+const AddExpense = React.forwardRef(AddExpenseComponent);
+export default AddExpense;
 
 const styles = StyleSheet.create({
-  closeButton:{
-    flexDirection: ''
-  },
   centeredView: {
     // flex: 1,
     justifyContent: "center",

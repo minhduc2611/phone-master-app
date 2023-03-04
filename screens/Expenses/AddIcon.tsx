@@ -1,7 +1,7 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 
-const AddIcon = (props) => (
+const AddIcon = (props: any) => (
   <Svg
     height={30}
     width={30}

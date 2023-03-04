@@ -1,17 +1,20 @@
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  SafeAreaView,
+  ActivityIndicator,
   FlatList,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
+import { useProject } from "../../api/users/hooks";
 
 import SafeView from "../../components/SafeView";
 import { projects } from "./mock";
-const TaskItem = ({item: {name, is_finished, due_date}}) => {
+import ProjectDetail from "./ProjectDetail";
+import ProjectsList from "./ProjectsList";
+const TaskItem = ({ item: { name, is_finished, due_date } } : any) => {
   // console.log("taskitem", item);
 
   return (
@@ -23,7 +26,7 @@ const TaskItem = ({item: {name, is_finished, due_date}}) => {
     </View>
   );
 };
-const Item = ({ item: { id, name, inProgress, type, tasks } }) => (
+const Item = ({ item: { id, name, inProgress, type, tasks } } : any) => (
   <View style={styles.item}>
     <Text style={styles.title}>
       {inProgress ? "🟢" : "🔴"} {name}
@@ -31,7 +34,7 @@ const Item = ({ item: { id, name, inProgress, type, tasks } }) => (
     <Text style={styles.titleSecond}> {type}</Text>
     <View style={styles.tasksContainer}>
       <FlatList
-        data={tasks}
+        data={tasks ? tasks.filter((el : any) => el !== undefined) : []}
         renderItem={({ item }) => {
           return <TaskItem item={item} />;
         }}
@@ -40,20 +43,29 @@ const Item = ({ item: { id, name, inProgress, type, tasks } }) => (
     </View>
   </View>
 );
-const Projects = ({ navigation }) => {
+const Stack = createNativeStackNavigator();
+
+const Projects = ({ navigation } : any) => {
   return (
-    <SafeView navigation={navigation}>
-      <View style={styles.titleContainer}>
-        {/* <Text style={styles.title}>Projects Screen</Text> */}
-      </View>
-      <FlatList
-        data={projects}
-        renderItem={({ item }) => {
-          return <Item item={item} />;
-        }}
-        keyExtractor={(item) => item.id}
+    <Stack.Navigator
+      initialRouteName="ProjectsList"
+      screenOptions={{
+        headerShown: false,
+        // animationEnabled: false,
+        animation: "none",
+      }}
+    >
+      <Stack.Screen
+        name={"ProjectsList"}
+        component={ProjectsList}
+        options={{ title: "ProjectsList" }}
       />
-    </SafeView>
+      <Stack.Screen
+        name={"ProjectDetail"}
+        component={ProjectDetail}
+        options={{ title: "ProjectDetail" }}
+      />
+    </Stack.Navigator>
   );
 };
 
@@ -64,9 +76,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#000080",
     color: "white",
     alignItems: "center",
-  },
-  title: {
-    // color: "white",
   },
   container: {
     flex: 1,

@@ -8,29 +8,12 @@ import {
 } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Routes } from "./common/constants";
-// const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-        {/* <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={{
-            headerShown: false,
-            animationEnabled: false,
-            animation: "none",
-          }}
-        >
-          {Routes.map((route, idx) => (
-            <Stack.Screen
-              key={idx}
-              name={route.name}
-              component={route.conponent}
-              options={{ title: route.title }}
-            />
-          ))}
-        </Stack.Navigator> */}
+
         <Suspense fallback={<Text>Loading ...</Text>}>
         <Tab.Navigator
           initialRouteName="Home"
@@ -39,16 +22,7 @@ export default function App() {
           
           barStyle={{ backgroundColor: "transparent" }}
         >
-          
-
           {Routes.map((route, idx) => (
-            // <Stack.Screen
-            //   key={idx}
-            //   name={route.name}
-            //   component={route.conponent}
-            //   options={{ title: route.title }}
-            // />
-
             <Tab.Screen
               key={idx}
               name={route.name}

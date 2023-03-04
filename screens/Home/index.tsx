@@ -1,9 +1,8 @@
 import React from "react";
-import { View, Text, Button, StyleSheet, SafeAreaView } from "react-native";
-import Header from "../../components/Header";
+import { StyleSheet, View } from "react-native";
 
 import SafeView from "../../components/SafeView";
-const Home = ({ navigation }) => {
+const Home = ({ navigation } : any) => {
   return (
     <SafeView navigation={navigation}>
       <View style={styles.titleContainer}>

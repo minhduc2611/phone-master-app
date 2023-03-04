@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import SafeView from "../../components/SafeView";
 
-const Todos = ({ navigation }) => {
+const Todos = ({ navigation }: any) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState(new Date());
@@ -15,7 +15,7 @@ const Todos = ({ navigation }) => {
     // Save the todo item
   };
 
-  const handleDateChange = (event, selectedDate) => {
+  const handleDateChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || dueDate;
     setShowDatePicker(false);
     setDueDate(currentDate);
@@ -29,11 +29,9 @@ const Todos = ({ navigation }) => {
         <Text style={styles.label}>Description</Text>
 
         <TextInput
-          style={styles.input}
           value={description}
           onChangeText={setDescription}
-          styles={{ flex: 1, padding: 10, paddingTop: 12, paddingBottom: 12 }}
-          maxHeight={240}
+          style={{ ...styles.input, flex: 1, padding: 10, paddingTop: 12, paddingBottom: 12 }}
           onBlur={() => console.log("ON BLUR")}
           onFocus={() => console.log("ON FOCUS")}
         />
@@ -46,7 +44,7 @@ const Todos = ({ navigation }) => {
         {showDatePicker && (
           <DateTimePicker
             value={dueDate}
-            mode="datetime"
+            mode={"datetime" as any}
             is24Hour={true}
             display="default"
             onChange={handleDateChange}

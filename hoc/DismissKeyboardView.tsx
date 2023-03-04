@@ -1,8 +1,8 @@
 import React from "react";
 import { Pressable, Keyboard, View } from "react-native";
 
-const DismissKeyboardHOC = (Comp) => {
-  return ({ children, ...props }) => (
+const DismissKeyboardHOC = (Comp: any) => {
+  return ({ children, ...props }: any) => (
     <Pressable
       onPress={(a) => {
         console.log("ON PRESSSSSSSSSS");
@@ -15,4 +15,5 @@ const DismissKeyboardHOC = (Comp) => {
     </Pressable>
   );
 };
-export default DismissKeyboardView = DismissKeyboardHOC(View);
+const DismissKeyboardView = DismissKeyboardHOC(View);
+export default DismissKeyboardView;

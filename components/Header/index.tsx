@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 import { Routes } from "../../common/constants";
 
-const Header = ({ navigation }) => {
+const Header = ({ navigation }: any) => {
   console.log("navigation", navigation);
   if (!navigation) return <></>;
   const routes = navigation.getState().routes;
@@ -16,7 +16,7 @@ const Header = ({ navigation }) => {
       {Routes.map((route, idx) => (
         // <Button
         //   key={idx}
-        //   
+        //
         //   title={`${route.title}`}
         //   onPress={() => navigation.navigate(route.name)}
         // >

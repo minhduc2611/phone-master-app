@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   ActivityIndicator,
+  Button,
   FlatList,
   StatusBar,
   StyleSheet,
   Text,
   View,
 } from "react-native";
-import { useProject } from "../../../api/users/hooks";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+
+import { useFetchProject } from "../../../api/projects/hooks";
 import SafeView from "../../../components/SafeView";
-const TaskItem = ({ item: { name, is_finished, due_date } } : any) => {
+import ProjectAdd from "../ProjectAdd";
+import SwipeableRow from "../SwipeableRow";
+const TaskItem = ({ item: { name, is_finished, due_date } }: any) => {
   return (
     <View style={styles.taskItem}>
       <Text style={styles.taskTitle}>
@@ -19,7 +24,10 @@ const TaskItem = ({ item: { name, is_finished, due_date } } : any) => {
     </View>
   );
 };
-const Item = ({ toDetail, item: { id, name, inProgress, type, tasks } } : any) => (
+const Item = ({
+  toDetail,
+  item: { id, name, inProgress, type, tasks },
+}: any) => (
   <View style={styles.item}>
     <Text onPress={() => toDetail(id)} style={styles.title}>
       {inProgress ? "🟢" : "🔴"} {name}
@@ -27,7 +35,11 @@ const Item = ({ toDetail, item: { id, name, inProgress, type, tasks } } : any) =
     <Text style={styles.titleSecond}> {type}</Text>
     <View style={styles.tasksContainer}>
       <FlatList
-        data={tasks ? tasks.filter((el : any) => el !== undefined) : []}
+        data={
+          tasks && tasks.length > 0
+            ? tasks.filter((el: any) => el !== undefined)
+            : []
+        }
         renderItem={({ item }) => {
           return <TaskItem item={item} />;
         }}
@@ -37,29 +49,39 @@ const Item = ({ toDetail, item: { id, name, inProgress, type, tasks } } : any) =
   </View>
 );
 
-const ProjectsList = ({ navigation } : any) => {
-  const { projects, loading } = useProject();
+const ProjectsList = ({ navigation }: any) => {
+  const { projects, loading } = useFetchProject();
   console.log("loading", loading);
   console.log("projects", projects);
-  const toDetail = (projectId : any) => {
+  const toDetail = (projectId: any) => {
     navigation.navigate("ProjectDetail", {
       projectId,
     });
   };
+  const modalRef = useRef<any>(null);
   return (
     <SafeView>
-      <View style={styles.titleContainer}>
-        {/* <Text style={styles.title}>Projects Screen</Text> */}
-      </View>
+      <ProjectAdd ref={modalRef} />
+      <Button
+        title="Add"
+        onPress={() => modalRef.current?.setModalVisible(true)}
+      />
+
       {loading ? (
         <ActivityIndicator />
       ) : (
         <FlatList
           data={projects}
           renderItem={({ item }) => {
-            return <Item toDetail={toDetail} item={item} />;
+            return (
+              <>
+                <SwipeableRow>
+                  <Item toDetail={toDetail} item={item} />
+                </SwipeableRow>
+              </>
+            );
           }}
-          keyExtractor={(item : any) => item.id}
+          keyExtractor={(item: any) => item.id}
         />
       )}
     </SafeView>

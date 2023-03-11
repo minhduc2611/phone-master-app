@@ -8,7 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { useProject } from "../../api/users/hooks";
+import { useFetchProject } from "../../api/projects/hooks";
 
 import SafeView from "../../components/SafeView";
 import { projects } from "./mock";

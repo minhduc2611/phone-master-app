@@ -1,11 +1,16 @@
 import { useLayoutEffect, useState } from "react";
 import projectsAPI, { oneTimeRead } from ".";
-import { uuid } from "../../common/common-utils";
-import { FORMAT, getCurrentTime } from "../../common/moment-utils";
-import { Project } from "../../common/type";
+import { uuid } from "@/common/common-utils";
+import { FORMAT, getCurrentTime } from "@/common/moment-utils";
+import { Project } from "@/common/type";
 
+interface States {
+  loading: boolean,
+  error: string | null,
+  projects: Project[]
+}
 export const useFetchProject = () => {
-  const [projectState, setProjectState] = useState({
+  const [projectState, setProjectState] = useState<States>({
     loading: false,
     error: null,
     projects: [],

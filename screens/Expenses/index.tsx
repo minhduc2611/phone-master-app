@@ -5,7 +5,7 @@ import {
 import {
   useSafeAreaInsets
 } from "react-native-safe-area-context";
-import SafeView from "../../components/SafeView";
+import SafeViewWrapper from "@/components/SafeViewWrapper";
 import AddExpense from "./AddExpense";
 import AddIcon from "./AddIcon";
 
@@ -52,7 +52,7 @@ const Expenses = ({ navigation }: any) => {
   };
 
   return (
-    <SafeView navigation={navigation}>
+    <SafeViewWrapper navigation={navigation}>
       <View
         style={{
           margin: 15,
@@ -130,7 +130,7 @@ const Expenses = ({ navigation }: any) => {
         </View>
         <AddExpense ref={modalRef} />
       </ScrollView>
-    </SafeView>
+    </SafeViewWrapper>
   );
 };
 

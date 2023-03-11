@@ -1,6 +1,6 @@
 import { ref, onValue, push } from "firebase/database";
-import { Project } from "../../common/type";
-import { appDatabase } from "../../firebase/config";
+import { Project } from "@/common/type";
+import { appDatabase } from "@/firebase/config";
 
 const getUsersReference = (id: number) =>
   ref(appDatabase, `/users/${id}`);
@@ -10,9 +10,9 @@ const getProjectsReference = (user_id: number) =>
 
 // const ref = appDatabase.ref(userReference);
 
-export const oneTimeRead = async (updateState = (projects: any) => {}) => {
+export const oneTimeRead = async (updateState = (projects: Project[]) => {}) => {
   const projectsRef = getProjectsReference(1);
-  let data;
+  let data: Project[];
   onValue(projectsRef, (snapshot) => {
     let snapshotVal = snapshot.val() as Project[];
     // realtime 🫣 !!!!

@@ -6,15 +6,15 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  View,
+  View
 } from "react-native";
-import Swipeable from "react-native-gesture-handler/Swipeable";
 
-import { useFetchProject } from "../../../api/projects/hooks";
-import SafeView from "../../../components/SafeView";
+import { Project, Task } from "@/common/type";
+import SafeViewWrapper from "@/components/SafeViewWrapper";
 import ProjectAdd from "../ProjectAdd";
 import SwipeableRow from "../SwipeableRow";
-const TaskItem = ({ item: { name, is_finished, due_date } }: any) => {
+import { useFetchProject } from "@/api/projects/hooks";
+const TaskItem = ({ item: { name, is_finished, due_date } }: {item: Task}) => {
   return (
     <View style={styles.taskItem}>
       <Text style={styles.taskTitle}>
@@ -27,7 +27,10 @@ const TaskItem = ({ item: { name, is_finished, due_date } }: any) => {
 const Item = ({
   toDetail,
   item: { id, name, inProgress, type, tasks },
-}: any) => (
+}: {
+  toDetail: (projectId: any) => void,
+  item: Project
+}) => (
   <View style={styles.item}>
     <Text onPress={() => toDetail(id)} style={styles.title}>
       {inProgress ? "🟢" : "🔴"} {name}
@@ -51,8 +54,8 @@ const Item = ({
 
 const ProjectsList = ({ navigation }: any) => {
   const { projects, loading } = useFetchProject();
-  console.log("loading", loading);
-  console.log("projects", projects);
+  console.log("ProjectsList loading", loading);
+  console.log("ProjectsList projects", projects);
   const toDetail = (projectId: any) => {
     navigation.navigate("ProjectDetail", {
       projectId,
@@ -60,7 +63,7 @@ const ProjectsList = ({ navigation }: any) => {
   };
   const modalRef = useRef<any>(null);
   return (
-    <SafeView>
+    <SafeViewWrapper>
       <ProjectAdd ref={modalRef} />
       <Button
         title="Add"
@@ -84,7 +87,7 @@ const ProjectsList = ({ navigation }: any) => {
           keyExtractor={(item: any) => item.id}
         />
       )}
-    </SafeView>
+    </SafeViewWrapper>
   );
 };
 

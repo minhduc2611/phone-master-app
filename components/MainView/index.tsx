@@ -1,8 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import DismissKeyboardView from "../../hoc/DismissKeyboardView";
-
+import DismissKeyboardView from "@/hoc/DismissKeyboardView";
 const MainView = ({ keyboardDissmissabled = false, style, children }: any) => {
   const insets = useSafeAreaInsets();
   const renderView = (

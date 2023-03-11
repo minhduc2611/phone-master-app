@@ -10,7 +10,7 @@ import {
   Button,
 } from "react-native";
 import GestureRecognizer from "react-native-swipe-gestures";
-import SafeView from "../../../components/SafeView";
+import SafeViewWrapper from "@/components/SafeViewWrapper";
 
 function AddExpenseComponent(props: any, ref: any) {
   const [modalVisible, setModalVisible] = useState(false);

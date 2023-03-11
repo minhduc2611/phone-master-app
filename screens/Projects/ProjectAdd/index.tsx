@@ -12,10 +12,10 @@ import {
   TextInput,
 } from "react-native";
 import GestureRecognizer from "react-native-swipe-gestures";
-import { useManageProject } from "../../../api/projects/hooks";
-import { Project, ProjectTypes } from "../../../common/type";
-import MainView from "../../../components/MainView";
-import SafeView from "../../../components/SafeView";
+import { useManageProject } from "@/api/projects/hooks";
+import { Project, ProjectTypes } from "@/common/type";
+import MainView from "@/components/MainView";
+import SafeView from "@/components/SafeView";
 
 function AddProjectComponent(props: any, ref: any) {
   const [modalVisible, setModalVisible] = useState(false);

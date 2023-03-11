@@ -1,14 +1,14 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import SafeView from "../../components/SafeView";
-const Home = ({ navigation } : any) => {
+import SafeViewWrapper from "@/components/SafeViewWrapper";
+const Home = ({ navigation }: any) => {
   return (
-    <SafeView navigation={navigation}>
+    <SafeViewWrapper navigation={navigation}>
       <View style={styles.titleContainer}>
         {/* <Text style={styles.title}>Home Screen</Text> */}
       </View>
-    </SafeView>
+    </SafeViewWrapper>
   );
 };
 

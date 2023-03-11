@@ -3,7 +3,7 @@ import { Picker } from "@react-native-picker/picker";
 import moment from "moment";
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import SafeView from "../../components/SafeView";
+import SafeViewWrapper from "@/components/SafeViewWrapper";
 
 const Todos = ({ navigation }: any) => {
   const [title, setTitle] = useState("");
@@ -22,7 +22,7 @@ const Todos = ({ navigation }: any) => {
   };
 
   return (
-    <SafeView navigation={navigation} keyboardDissmissabled>
+    <SafeViewWrapper navigation={navigation} keyboardDissmissabled>
       <View style={styles.container}>
         <Text style={styles.label}>Title</Text>
         <TextInput style={styles.input} value={title} onChangeText={setTitle} />
@@ -61,7 +61,7 @@ const Todos = ({ navigation }: any) => {
         </Picker>
         <Button title="Save" onPress={handleSave} />
       </View>
-    </SafeView>
+    </SafeViewWrapper>
   );
 };
 

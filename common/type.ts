@@ -1,9 +1,9 @@
 export type Project = {
-  id: String;
-  name: String;
+  id: string;
+  name: string;
   inProgress: boolean;
   type: ProjectTypes;
-  createdDate?: String,
+  createdDate?: string,
   tasks?: Task[]
 };
 
@@ -15,8 +15,8 @@ export enum ProjectTypes {
 }
 
 export type Task = {
-    id: number;
-    name: String;
+    id: string;
+    name: string;
     is_finished: boolean;
-    due_date: ProjectTypes;
+    due_date: string;
   };

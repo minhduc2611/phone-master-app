@@ -1,13 +1,13 @@
 import React from "react";
 import { Text } from "react-native";
-import SafeView from "../../../components/SafeView";
+import SafeViewWrapper from "@/components/SafeViewWrapper";
 
 export default function ProjectDetail({ navigation, route } : any) {
   const { projectId } = route.params;
   console.log("projectId", projectId);
   return (
-    <SafeView>
+    <SafeViewWrapper>
       <Text>ProjectDetail {projectId}</Text>
-    </SafeView>
+    </SafeViewWrapper>
   );
 }

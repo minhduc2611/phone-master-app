@@ -1,13 +1,9 @@
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
 import React from "react";
-import { View } from "react-native";
-import Header from "../Header";
-import MainView from "../MainView";
+import { Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const SafeView = ({ children, keyboardDissmissabled = false }: any) => {
+import MainView from "../MainView";
+const SafeViewWrapper = ({ children, keyboardDissmissabled = false }: any) => {
   const insets = useSafeAreaInsets();
   return (
     <View
@@ -31,4 +27,4 @@ const SafeView = ({ children, keyboardDissmissabled = false }: any) => {
   );
 };
 
-export default SafeView;
+export default SafeViewWrapper;

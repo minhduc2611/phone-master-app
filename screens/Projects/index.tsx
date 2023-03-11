@@ -1,17 +1,13 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import {
-  ActivityIndicator,
   FlatList,
   StatusBar,
   StyleSheet,
   Text,
-  View,
+  View
 } from "react-native";
-import { useFetchProject } from "../../api/projects/hooks";
 
-import SafeView from "../../components/SafeView";
-import { projects } from "./mock";
 import ProjectDetail from "./ProjectDetail";
 import ProjectsList from "./ProjectsList";
 const TaskItem = ({ item: { name, is_finished, due_date } } : any) => {

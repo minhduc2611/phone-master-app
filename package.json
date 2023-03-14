@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "DB_URL='https://phone-master-app-default-rtdb.asia-southeast1.firebasedatabase.app/' API_KEY='AIzaSyC9-6mlpgePrHyQ6t7HeqnkD_zcBnXjlcE' AUTH_DOMAIN='phone-master-app.firebaseapp.com' PROJECT_ID='phone-master-app' STORAGE_BUCKET='phone-master-app.appspot.com' MESSAGING_SENDER_ID='214047799241' APP_ID='1:214047799241:web:d4e235e1f518408bd35a18' MEASUREMENT_ID='G-E71XN1JWHF' expo start",
     "android": "expo start --android",
-    "ios": "expo start",
+    "ios": "DB_URL='https://phone-master-app-default-rtdb.asia-southeast1.firebasedatabase.app/' API_KEY='AIzaSyC9-6mlpgePrHyQ6t7HeqnkD_zcBnXjlcE' AUTH_DOMAIN='phone-master-app.firebaseapp.com' PROJECT_ID='phone-master-app' STORAGE_BUCKET='phone-master-app.appspot.com' MESSAGING_SENDER_ID='214047799241' APP_ID='1:214047799241:web:d4e235e1f518408bd35a18' MEASUREMENT_ID='G-E71XN1JWHF' expo start",
     "web": "expo start --web"
   },
   "dependencies": {

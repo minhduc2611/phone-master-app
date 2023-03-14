@@ -11,7 +11,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-        <Suspense fallback={<Text>Loading Screen ...</Text>}>
+        <Suspense fallback={<Text>Loading Screens ...</Text>}>
           <Tab.Navigator
             initialRouteName="Home"
             activeColor="#1c1a33"
